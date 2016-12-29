@@ -11,7 +11,20 @@ Remove the icons associated with Timeline Express announcements.
 
 == Description ==
 
-Remove the icons associated with Timeline Express announcements.
+Timeline Express - No Icons Add-On is a WordPress plugin that extends the base plugin, <a href="https://wordpress.org/plugins/timeline-express/">Timeline Express</a>.
+
+The Timeline Express - No Icons Add-On removes the icons associated with the Timeline Express announcements. This add-on will remove the icon selection on the announcement new/edit screen, as well as the icons on the front end of the site.
+
+When activated, the Timeline Express - No Icons Add-On will create a new settings tab on the Timeline Express settings page which will allow you to remove the icons globally, or explain how you can remove the icons on each timeline.
+
+**Basic Usage**
+
+Head into 'Timeline Express > Settings' and enable the 'Global No Icons' option to remove the icons on *all* timelines on your site.
+
+If you want to remove the icons on a specific timeline, but leave them on others, you can add the 'no-icons' parameter to the <code>[timeline-express]</code> shortcode and set it to "1".
+
+**Example**
+<code>[timeline-express no-icons="1"]</code>
 
 == Screenshots ==
 1. Timeline Express - No Icons Add-On Settings
