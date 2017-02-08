@@ -15,6 +15,10 @@
 		margin-left: -10px !important;
 	}
 
+	.cd-timeline-block.timeline-announcement-left.no-icons .cd-timeline-img.icon-no-readmore {
+		right: -10px;
+	}
+
 	#cd-timeline .no-icons .cd-timeline-img {
 		width: 20px;
 		height: 20px;
