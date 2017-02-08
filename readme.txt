@@ -4,7 +4,7 @@ Tags: timeline, express, time, line, timeline express, add, on, add-on, no, icon
 Plugin URI: https://www.wp-timelineexpress.com
 Requires at least: WP 4.0 & Timeline Express 1.2
 Tested up to: 4.7
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 
 Remove the icons associated with Timeline Express announcements.
@@ -31,6 +31,11 @@ If you want to remove the icons on a specific timeline, but leave them on others
 2. Front-End of Site No Icons Add-On Example
 
 == Changelog ==
+
+= 1.1.0 - February 8th, 2017 =
+* Resolved styling issue between Timeline Express free/pro.
+* Removed excess CSS files and consolidated into a single file `timeline-express-no-icons.css`.
+* Tweak grunt tasks.
 
 = 1.0.0 - December 27th, 2017 =
 * Initial release.

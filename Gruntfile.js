@@ -59,6 +59,43 @@ module.exports = function(grunt) {
 			}
 		},
 
+		replace: {
+			base_file: {
+				src: [ 'timeline-express-no-icons-add-on.php' ],
+				overwrite: true,
+				replacements: [{
+					from: /Version: (.*)/,
+					to: "Version: <%= pkg.version %>"
+				}]
+			},
+			readme_txt: {
+				src: [ 'readme.txt' ],
+				overwrite: true,
+				replacements: [{
+					from: /Stable tag: (.*)/,
+					to: "Stable tag: <%= pkg.version %>"
+				}]
+			},
+			readme_md: {
+				src: [ 'README.md' ],
+				overwrite: true,
+				replacements: [
+					{
+						from: /# Timeline Express - No Icons Add-On v(.*)/,
+						to: "# Timeline Express - No Icons Add-On v<%= pkg.version %>"
+					}
+				]
+			},
+			constants: {
+				src: [ 'constants.php' ],
+				overwrite: true,
+				replacements: [{
+					from: /define\(\s*'TIMELINE_EXPRESS_NO_ICONS_VERSION',\s*'(.*)'\s*\);/,
+					to: "define( 'TIMELINE_EXPRESS_NO_ICONS_VERSION', '<%= pkg.version %>' );"
+				}]
+			}
+		},
+
 		// watch our project for changes
 		watch: {
 			public_css: {
@@ -110,6 +147,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-banner' );
+	grunt.loadNpmTasks( 'grunt-text-replace' );
 	grunt.loadNpmTasks( 'grunt-postcss' );
 	grunt.loadNpmTasks( 'grunt-wp-deploy' );
 
@@ -119,6 +157,11 @@ module.exports = function(grunt) {
 		'cssmin',
 		'usebanner',
 		'watch',
+	] );
+
+	// register bump-version
+	grunt.registerTask( 'bump-version', [
+		'replace',
 	] );
 
 	// register deploy
