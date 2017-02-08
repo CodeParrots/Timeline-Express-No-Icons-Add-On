@@ -148,9 +148,8 @@ function initialize_timeline_express_no_icons_addon() {
 				}
 
 				$suffix = WP_DEBUG ? '' : '.min';
-				$free   = is_plugin_active( 'timeline-express/timeline-express.php' ) ? '-free' : '-pro';
 
-				wp_enqueue_style( 'timeline-express-no-icons', TIMELINE_EXPRESS_NO_ICONS_URL . "/lib/css/timeline-express-no-icons{$free}{$suffix}.css", array( 'timeline-express-base' ) );
+				wp_enqueue_style( 'timeline-express-no-icons', TIMELINE_EXPRESS_NO_ICONS_URL . "/lib/css/timeline-express-no-icons{$suffix}.css", array( 'timeline-express-base' ) );
 
 			}
 

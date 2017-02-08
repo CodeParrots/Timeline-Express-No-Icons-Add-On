@@ -5,6 +5,8 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 
+		pkg: pkg,
+
 		// Autoprefixer for our CSS files
 		postcss: {
 			options: {
@@ -25,13 +27,9 @@ module.exports = function(grunt) {
 			target: {
 				files: [
 					{
-						'lib/css/timeline-express-no-icons-free.min.css':
+						'lib/css/timeline-express-no-icons.min.css':
 						[
-							'lib/css/timeline-express-no-icons-free.css',
-						],
-						'lib/css/timeline-express-no-icons-pro.min.css':
-						[
-							'lib/css/timeline-express-no-icons-pro.css',
+							'lib/css/timeline-express-no-icons.css',
 						],
 					},
 				]
@@ -64,7 +62,7 @@ module.exports = function(grunt) {
 		// watch our project for changes
 		watch: {
 			public_css: {
-				files: [ 'lib/css/*.css', ],
+				files: [ 'lib/css/*.css', '! lib/css/*.min.css', ],
 				tasks: [ 'cssmin', 'usebanner'],
 				options: {
 					spawn: false,
