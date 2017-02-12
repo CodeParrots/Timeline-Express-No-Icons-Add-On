@@ -1,9 +1,9 @@
-# Timeline Express - No Icons Add-On v1.1.0
+# Timeline Express - No Icons Add-On v1.1.1
 
 **Tags:**              timeline, express, time, line, timeline express, add, on, add-on, no, icons, no icons <br />
 **Requires at least:** WordPress v4.2 <br />
 **Tested up to:**      WordPress v4.7.2 <br />
-**Stable tag:**        1.0.0 <br />
+**Stable tag:**        1.1.1 <br />
 **License:**           GPLv2 or later <br />
 **License URI:**       [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
 

@@ -83,6 +83,10 @@ module.exports = function(grunt) {
 					{
 						from: /# Timeline Express - No Icons Add-On v(.*)/,
 						to: "# Timeline Express - No Icons Add-On v<%= pkg.version %>"
+					},
+					{
+						from: /\*\*Stable tag:\*\*        (.*) <br \/>/,
+						to: "**Stable tag:**        <%= pkg.version %> <br />"
 					}
 				]
 			},

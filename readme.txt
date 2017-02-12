@@ -4,7 +4,7 @@ Tags: timeline, express, time, line, timeline express, add, on, add-on, no, icon
 Plugin URI: https://www.wp-timelineexpress.com
 Requires at least: WP 4.0 & Timeline Express 1.2
 Tested up to: 4.7.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 
 Remove the icons associated with Timeline Express announcements.
