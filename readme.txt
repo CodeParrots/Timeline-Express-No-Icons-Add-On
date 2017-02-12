@@ -32,6 +32,9 @@ If you want to remove the icons on a specific timeline, but leave them on others
 
 == Changelog ==
 
+= 1.1.1 - February 12th, 2017 =
+* Updated styles to work with Timeline Express Pro horizontal timelines.
+
 = 1.1.0 - February 8th, 2017 =
 * Resolved styling issue between Timeline Express free/pro.
 * Removed excess CSS files and consolidated into a single file `timeline-express-no-icons.css`.
@@ -39,3 +42,8 @@ If you want to remove the icons on a specific timeline, but leave them on others
 
 = 1.0.0 - December 27th, 2017 =
 * Initial release.
+
+== Upgrade Notice ==
+
+= 1.1.1 - February 12th, 2017 =
+* Updated styles to work with Timeline Express Pro horizontal timelines.
