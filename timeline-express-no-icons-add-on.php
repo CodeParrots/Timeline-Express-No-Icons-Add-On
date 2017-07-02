@@ -4,7 +4,7 @@
 Plugin Name: Timeline Express - No Icons Add-On
 Plugin URI: https://www.wp-timelineexpress.com
 Description: Remove icons from a single timeline or all timelines globally.
-Version: 1.1.1
+Version: 1.2.0
 Author: Code Parrots
 Text Domain: timeline-express-no-icons-add-on
 Author URI: http://www.codeparrots.com
@@ -55,6 +55,13 @@ function initialize_timeline_express_no_icons_addon() {
 		private $options;
 
 		public function __construct() {
+
+			/**
+			 * Introduce Timeline Express Pro shortcode generator section
+			 *
+			 * @since 1.2.0
+			 */
+			include_once( TIMELINE_EXPRESS_NO_ICONS_PATH . 'lib/class-tinymce.php' );
 
 			add_filter( 'shortcode_atts_timeline-express', array( $this, 'add_no_icon_shortcode_parameter' ), 10, 4 );
 
@@ -137,21 +144,23 @@ function initialize_timeline_express_no_icons_addon() {
 		 */
 		public function add_no_icon_shortcode_parameter( $output, $pairs, $atts, $shortcode ) {
 
-			if ( ( isset( $atts['no_icons'] ) || isset( $atts['no-icons'] ) ) && ( 1 === (int) $atts['no_icons'] || 1 === (int) $atts['no-icons'] ) || $this->options['global_no_icons'] ) {
+			if ( ( ! isset( $atts['no-icons'] ) || 1 !== (int) $atts['no-icons'] ) && ! $this->options['global_no_icons'] ) {
 
-				add_filter( 'timeline-express-announcement-container-class', array( $this, 'append_no_icon_container_class' ), 12, 2 );
-
-				if ( ! function_exists( 'is_plugin_active' ) ) {
-
-					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
-				}
-
-				$suffix = WP_DEBUG ? '' : '.min';
-
-				wp_enqueue_style( 'timeline-express-no-icons', TIMELINE_EXPRESS_NO_ICONS_URL . "/lib/css/timeline-express-no-icons{$suffix}.css", array( 'timeline-express-base' ) );
+				return $output;
 
 			}
+
+			add_filter( 'timeline-express-announcement-container-class', array( $this, 'append_no_icon_container_class' ), 12, 2 );
+
+			if ( ! function_exists( 'is_plugin_active' ) ) {
+
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+			}
+
+			$suffix = WP_DEBUG ? '' : '.min';
+
+			wp_enqueue_style( 'timeline-express-no-icons', TIMELINE_EXPRESS_NO_ICONS_URL . "/lib/css/timeline-express-no-icons-add-on{$suffix}.css", array( 'timeline-express-base' ) );
 
 			return $output;
 

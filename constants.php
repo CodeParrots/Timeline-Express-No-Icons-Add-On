@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 if ( ! defined( 'TIMELINE_EXPRESS_NO_ICONS_VERSION' ) ) {
 
-	define( 'TIMELINE_EXPRESS_NO_ICONS_VERSION', '1.1.1' );
+	define( 'TIMELINE_EXPRESS_NO_ICONS_VERSION', '1.2.0' );
 
 }
 
