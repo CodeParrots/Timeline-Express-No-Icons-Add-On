@@ -1,5 +1,5 @@
-#cd-timeline .no-icons .cd-timeline-img span.fa,
-#cd-timeline .no-icons .cd-timeline-img span.year {
+#cd-timeline .no-icon .cd-timeline-img span.fa,
+#cd-timeline .no-icon .cd-timeline-img span.year {
 	display: none;
 }
 
@@ -15,11 +15,11 @@
 		margin-left: -10px !important;
 	}
 
-	.cd-timeline-block.timeline-announcement-left.no-icons .cd-timeline-img.icon-no-readmore {
+	.cd-timeline-block.timeline-announcement-left.no-icon .cd-timeline-img.icon-no-readmore {
 		right: -10px;
 	}
 
-	#cd-timeline .no-icons .cd-timeline-img {
+	#cd-timeline .no-icon .cd-timeline-img {
 		width: 20px;
 		height: 20px;
 		margin-top: 20px;
@@ -34,8 +34,8 @@
 		transform: scale(1);
 	}
 
-	#cd-timeline .cd-timeline-block.no-icons:hover .cd-timeline-img,
-	#cd-timeline .cd-timeline-block.no-icons .cd-timeline-img:hover {
+	#cd-timeline .cd-timeline-block.no-icon:hover .cd-timeline-img,
+	#cd-timeline .cd-timeline-block.no-icon .cd-timeline-img:hover {
 		-webkit-transition: all 150ms ease-in;
 		-webkit-transform: scale(1.25);
 		-ms-transition: all 150ms ease-in;
@@ -49,8 +49,8 @@
 	/**
 	 * Hover Animations Disabled
 	 */
-	#cd-timeline .cd-timeline-block.no-icons.no-animation:hover .cd-timeline-img,
-	#cd-timeline .cd-timeline-block.no-icons.no-animation .cd-timeline-img:hover {
+	#cd-timeline .cd-timeline-block.no-icon.no-animation:hover .cd-timeline-img,
+	#cd-timeline .cd-timeline-block.no-icon.no-animation .cd-timeline-img:hover {
 		transform: scale(1);
 	}
 
@@ -61,11 +61,11 @@
  */
 @media only screen and ( max-width: 821px ) {
 
-	#cd-timeline .cd-timeline-block.no-icons .cd-timeline-img {
+	#cd-timeline .cd-timeline-block.no-icon .cd-timeline-img {
 		width: 20px;
 		height: 20px;
 		left: 10px;
-		margin-top: 20px;
+		margin-top: 17px;
 	}
 
 }
@@ -75,7 +75,7 @@
  *
  * @since 1.1.1
  */
-#cd-timeline.horizontal-timeline .no-icons .cd-timeline-img {
+#cd-timeline.horizontal-timeline .no-icon .cd-timeline-img {
 	display: block;
 	margin: 0 auto;
 	margin-top: 17px;
