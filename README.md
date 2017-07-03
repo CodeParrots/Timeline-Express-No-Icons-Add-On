@@ -1,4 +1,4 @@
-# Timeline Express - No Icons Add-on v1.2.0 #
+# Timeline Express - No Icons Add-On v1.2.0 #
 **Contributors:** [codeparrots](https://profiles.wordpress.org/codeparrots), [eherman24](https://profiles.wordpress.org/eherman24)  
 **Tags:** [[time](https://wordpress.org/themes/tags/time/)[line](https://wordpress.org/themes/tags/line/)](https://wordpress.org/themes/tags/timeline/), [express](https://wordpress.org/themes/tags/express/), time, line, [timeline express](https://wordpress.org/themes/tags/timeline express/), [add](https://wordpress.org/themes/tags/add/), [on](https://wordpress.org/themes/tags/on/), [add-on](https://wordpress.org/themes/tags/add-on/), [no](https://wordpress.org/themes/tags/no/), [icons](https://wordpress.org/themes/tags/icons/), [no icons](https://wordpress.org/themes/tags/no icons/)  
 **Plugin URI:** https://www.wp-timelineexpress.com  

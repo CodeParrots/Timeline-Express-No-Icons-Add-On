@@ -1,6 +1,6 @@
 {
   "name": "timeline-express-no-icons-add-on",
-  "title": "Timeline Express - No Icons Add-on",
+  "title": "Timeline Express - No Icons Add-On",
   "version": "1.2.0",
   "description": "Remove the icons associated with Timeline Express announcements.",
   "main": "index.js",
