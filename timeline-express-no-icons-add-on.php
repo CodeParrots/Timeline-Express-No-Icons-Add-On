@@ -158,6 +158,18 @@ function initialize_timeline_express_no_icons_addon() {
 
 			}
 
+			/**
+			 * If Timeline Express v2 'styles' module is active
+			 * let it handle the styles for the 'no-icon' class.
+			 *
+			 * @since 1.2.0
+			 */
+			if ( class_exists( 'Timeline_Express_Styles' ) ) {
+
+				return $output;
+
+			}
+
 			$suffix = WP_DEBUG ? '' : '.min';
 
 			wp_enqueue_style( 'timeline-express-no-icons', TIMELINE_EXPRESS_NO_ICONS_URL . "/lib/css/timeline-express-no-icons-add-on{$suffix}.css", array( 'timeline-express-base' ) );
@@ -177,13 +189,23 @@ function initialize_timeline_express_no_icons_addon() {
 
 			$class_array = array();
 
-			if ( $this->options['disable_hover_animations'] ) {
+			if ( ! $this->options['disable_hover_animations'] ) {
 
 				$class_array[] = 'no-animation';
 
 			}
 
-			$class_array[] = 'no-icons';
+			if ( false === stripos( $classes, 'no-icon' ) ) {
+
+				$class_array[] = 'no-icon';
+
+			}
+
+			if ( empty( $class_array ) ) {
+
+				return $classes;
+
+			}
 
 			return $classes . ' ' . implode( ' ', $class_array );
 
