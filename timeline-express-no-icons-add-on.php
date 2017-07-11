@@ -166,6 +166,17 @@ function initialize_timeline_express_no_icons_addon() {
 			 */
 			if ( class_exists( 'Timeline_Express_Styles' ) ) {
 
+				// Hide the icon in rotated-square/small-dot icon containers
+				?>
+
+				<style type="text/css">
+				.cd-timeline-block.hide-icon .fa {
+					display: none !important;
+				}
+				</style>
+
+				<?php
+
 				return $output;
 
 			}
@@ -192,6 +203,14 @@ function initialize_timeline_express_no_icons_addon() {
 			if ( ! $this->options['disable_hover_animations'] ) {
 
 				$class_array[] = 'no-animation';
+
+			}
+
+			$icon_container = get_post_meta( $post_id, '_timeline_styles_icon_style', true );
+
+			if ( $icon_container && ( 'small-dot' === $icon_container || 'rotated-square' === $icon_container ) ) {
+
+				return $classes . ' hide-icon';
 
 			}
 
