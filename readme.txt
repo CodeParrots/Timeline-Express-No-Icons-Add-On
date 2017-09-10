@@ -1,9 +1,10 @@
 === Timeline Express - No Icons Add-On ===
 Contributors: codeparrots, eherman24
-Tags: timeline, express, time, line, timeline express, add, on, add-on, no, icons, no icons
+Tags: timeline, express, no, icons, add-on, shortcode, parameter
 Plugin URI: https://www.wp-timelineexpress.com
 Requires at least: WP 4.0 & Timeline Express 1.2
-Tested up to: 4.7.2
+Requires PHP: 5.6
+Tested up to: 4.8
 Stable tag: 1.1.1
 License: GPLv2 or later
 
@@ -31,6 +32,12 @@ If you want to remove the icons on a specific timeline, but leave them on others
 2. Front-End of Site No Icons Add-On Example
 
 == Changelog ==
+
+= 1.2.0 - September 10th, 2017 =
+* Tweaked the shortcode generate section for Timeline Express Pro v2 API.
+* Prevent the no icons stylesheet from loading if the styles module is loaded in the Pro version (v2.0+).
+* Change class from 'no-icons' to 'no-icon' to match the Pro version syntax.
+* Prevent duplicate 'no-icon' class if user has 'hide icons' checked in pro version (v2.0+) and the `no-icons="1"`` shortcode parameter is set.
 
 = 1.1.1 - February 12th, 2017 =
 * Updated styles to work with Timeline Express Pro horizontal timelines.

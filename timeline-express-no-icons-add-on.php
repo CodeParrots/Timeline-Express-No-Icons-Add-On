@@ -56,6 +56,13 @@ function initialize_timeline_express_no_icons_addon() {
 
 		public function __construct() {
 
+			/**
+			 * Introduce Timeline Express Pro shortcode generator section
+			 *
+			 * @since 1.2.0
+			 */
+			include_once( TIMELINE_EXPRESS_NO_ICONS_PATH . 'lib/class-tinymce.php' );
+
 			add_filter( 'shortcode_atts_timeline-express', array( $this, 'add_no_icon_shortcode_parameter' ), 10, 4 );
 
 			add_action( 'admin_init', array( $this, 'register_settings' ) );
@@ -137,21 +144,46 @@ function initialize_timeline_express_no_icons_addon() {
 		 */
 		public function add_no_icon_shortcode_parameter( $output, $pairs, $atts, $shortcode ) {
 
-			if ( ( isset( $atts['no_icons'] ) || isset( $atts['no-icons'] ) ) && ( 1 === (int) $atts['no_icons'] || 1 === (int) $atts['no-icons'] ) || $this->options['global_no_icons'] ) {
+			if ( ( ! isset( $atts['no-icons'] ) || 1 !== (int) $atts['no-icons'] ) && ! $this->options['global_no_icons'] ) {
 
-				add_filter( 'timeline-express-announcement-container-class', array( $this, 'append_no_icon_container_class' ), 12, 2 );
-
-				if ( ! function_exists( 'is_plugin_active' ) ) {
-
-					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
-				}
-
-				$suffix = WP_DEBUG ? '' : '.min';
-
-				wp_enqueue_style( 'timeline-express-no-icons', TIMELINE_EXPRESS_NO_ICONS_URL . "/lib/css/timeline-express-no-icons{$suffix}.css", array( 'timeline-express-base' ) );
+				return $output;
 
 			}
+
+			add_filter( 'timeline-express-announcement-container-class', array( $this, 'append_no_icon_container_class' ), 12, 2 );
+
+			if ( ! function_exists( 'is_plugin_active' ) ) {
+
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+			}
+
+			/**
+			 * If Timeline Express v2 'styles' module is active
+			 * let it handle the styles for the 'no-icon' class.
+			 *
+			 * @since 1.2.0
+			 */
+			if ( class_exists( 'Timeline_Express_Styles' ) ) {
+
+				// Hide the icon in rotated-square/small-dot icon containers
+				?>
+
+				<style type="text/css">
+				.cd-timeline-block.hide-icon .fa {
+					display: none !important;
+				}
+				</style>
+
+				<?php
+
+				return $output;
+
+			}
+
+			$suffix = WP_DEBUG ? '' : '.min';
+
+			wp_enqueue_style( 'timeline-express-no-icons', TIMELINE_EXPRESS_NO_ICONS_URL . "/lib/css/timeline-express-no-icons-add-on{$suffix}.css", array( 'timeline-express-base' ) );
 
 			return $output;
 
@@ -168,13 +200,31 @@ function initialize_timeline_express_no_icons_addon() {
 
 			$class_array = array();
 
-			if ( $this->options['disable_hover_animations'] ) {
+			if ( ! $this->options['disable_hover_animations'] ) {
 
 				$class_array[] = 'no-animation';
 
 			}
 
-			$class_array[] = 'no-icons';
+			$icon_container = get_post_meta( $post_id, '_timeline_styles_icon_style', true );
+
+			if ( $icon_container && ( 'small-dot' === $icon_container || 'rotated-square' === $icon_container ) ) {
+
+				return $classes . ' hide-icon';
+
+			}
+
+			if ( false === stripos( $classes, 'no-icon' ) ) {
+
+				$class_array[] = 'no-icon';
+
+			}
+
+			if ( empty( $class_array ) ) {
+
+				return $classes;
+
+			}
 
 			return $classes . ' ' . implode( ' ', $class_array );
 
@@ -249,7 +299,7 @@ function initialize_timeline_express_no_icons_addon() {
 
 			$posted_option = isset( $_POST['timeline_express_storage'] ) ? $_POST['timeline_express_storage'] : false;
 
-			$options['global_no_icons']          = isset( $posted_option['global_no_icons'] )          ? true : false;
+			$options['global_no_icons']          = isset( $posted_option['global_no_icons'] ) ? true : false;
 			$options['disable_hover_animations'] = isset( $posted_option['disable_hover_animations'] ) ? true : false;
 
 			return $options;

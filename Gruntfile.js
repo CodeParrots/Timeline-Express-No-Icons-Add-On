@@ -1,38 +1,61 @@
-'use strict';
+/**
+ * Gruntfile.js Controls
+ *
+ * @author Code Parrots <support@codeparrots.com>
+ * @since  1.0.0
+ */
 module.exports = function(grunt) {
+
+	'use strict';
 
 	var pkg = grunt.file.readJSON( 'package.json' );
 
-	grunt.initConfig({
+	grunt.initConfig( {
 
 		pkg: pkg,
 
-		// Autoprefixer for our CSS files
-		postcss: {
+		autoprefixer: {
 			options: {
-				map: true,
-				processors: [
-					require('autoprefixer-core') ({
-						browsers: ['last 2 versions']
-					})
-				]
+				browsers: [
+					'Android >= 2.1',
+					'Chrome >= 21',
+					'Edge >= 12',
+					'Explorer >= 7',
+					'Firefox >= 17',
+					'Opera >= 12.1',
+					'Safari >= 6.0'
+				],
+				cascade: false
 			},
-			dist: {
-				src: ['lib/css/*.css']
+			main: {
+				src: [ 'lib/css/<%= pkg.name %>.css' ]
 			}
 		},
 
-		// css minify all contents of our directory and add .min.css extension
+		sass: {
+			options: {
+				precision: 5,
+				sourceMap: false
+			},
+			main: {
+				files: {
+					'lib/css/<%= pkg.name %>.css': '.dev/sass/style.scss'
+				}
+			}
+		},
+
 		cssmin: {
-			target: {
-				files: [
-					{
-						'lib/css/timeline-express-no-icons.min.css':
-						[
-							'lib/css/timeline-express-no-icons.css',
-						],
-					},
-				]
+			options: {
+				processImport: false,
+				roundingPrecision: 5,
+				shorthandCompacting: false
+			},
+			assets: {
+				expand: true,
+				cwd: 'lib/css/',
+				src: [ '**/*.css', '!**/*.min.css' ],
+				dest: 'lib/css/',
+				ext: '.min.css'
 			}
 		},
 
@@ -49,129 +72,201 @@ module.exports = function(grunt) {
 						' * @Version <%= pkg.version %>\n' +
 						' * @Build <%= grunt.template.today("mm-dd-yyyy") %>\n'+
 						' */',
-						linebreak: true
-					},
-					files: {
-						src: [
-						'lib/css/*.min.css',
+					linebreak: true
+				},
+				files: {
+					src: [
+						'lib/css/*.min.css'
 					]
 				}
 			}
 		},
 
+		watch: {
+			public_css: {
+				files: [ 'lib/css/*.css', '! lib/css/*.min.css' ],
+				tasks: [ 'autoprefixer', 'cssmin', 'usebanner' ],
+				options: {
+					spawn: false,
+					event: [ 'all' ]
+				},
+			},
+			images: {
+				files: [
+					'wp-org-assets/**/*.{gif,jpeg,jpg,png,svg}'
+				],
+				tasks: [ 'imagemin' ]
+			},
+			sass: {
+				files: '.dev/sass/**/*.scss',
+				tasks: [ 'sass', 'autoprefixer', 'cssmin' ]
+			}
+		},
+
 		replace: {
 			base_file: {
-				src: [ 'timeline-express-no-icons-add-on.php' ],
-				overwrite: true,
-				replacements: [{
-					from: /Version: (.*)/,
-					to: "Version: <%= pkg.version %>"
-				}]
-			},
-			readme_txt: {
-				src: [ 'readme.txt' ],
-				overwrite: true,
-				replacements: [{
-					from: /Stable tag: (.*)/,
-					to: "Stable tag: <%= pkg.version %>"
-				}]
-			},
-			readme_md: {
-				src: [ 'README.md' ],
+				src: [ '<%= pkg.name %>.php' ],
 				overwrite: true,
 				replacements: [
 					{
-						from: /# Timeline Express - No Icons Add-On v(.*)/,
-						to: "# Timeline Express - No Icons Add-On v<%= pkg.version %>"
+						from: /Version: (.*)/,
+						to: "Version: <%= pkg.version %>"
 					},
 					{
-						from: /\*\*Stable tag:\*\*        (.*) <br \/>/,
-						to: "**Stable tag:**        <%= pkg.version %> <br />"
+						from: /define\(\s*'AJAX_LIMITS_VERSION',\s*'(.*)'\s*\);/,
+						to: "define( 'AJAX_LIMITS_VERSION', '<%= pkg.version %>' );"
 					}
 				]
 			},
 			constants: {
 				src: [ 'constants.php' ],
 				overwrite: true,
-				replacements: [{
+				replacements: [ {
 					from: /define\(\s*'TIMELINE_EXPRESS_NO_ICONS_VERSION',\s*'(.*)'\s*\);/,
 					to: "define( 'TIMELINE_EXPRESS_NO_ICONS_VERSION', '<%= pkg.version %>' );"
-				}]
-			}
-		},
-
-		// watch our project for changes
-		watch: {
-			public_css: {
-				files: [ 'lib/css/*.css', '! lib/css/*.min.css', ],
-				tasks: [ 'cssmin', 'usebanner'],
-				options: {
-					spawn: false,
-					event: ['all']
-				},
+				} ]
+			},
+			readme_txt: {
+				src: [ 'readme.txt' ],
+				overwrite: true,
+				replacements: [ {
+					from: /Stable tag: (.*)/,
+					to: "Stable tag: <%= pkg.version %>"
+				} ]
+			},
+			charset: {
+				overwrite: true,
+				replacements: [
+					{
+						from: /^@charset "UTF-8";\n/,
+						to: ''
+					}
+				],
+				src: [ 'lib/css/*.css' ]
 			},
 		},
 
-		// Copy our template files to the root /template/ directory.
+		clean: {
+			pre_build: [ 'build/*' ],
+		},
+
 		copy: {
-			deploy: {
+			package: {
 				files: [
-					// copy over the files in preperation for a deploy to SVN
 					{
 						expand: true,
 						src: [
-							'constants.php',
-							'lib/**',
-							'readme.txt',
-							'timeline-express-no-icons-add-on.php',
-							'uninstall.php',
+							'*.php',
+							'*.txt',
+							'lib/**'
 						],
-						dest: 'build/'
-					},
+						dest: 'build/<%= pkg.name %>'
+					}
 				],
+			}
+		},
+
+		compress: {
+			main: {
+				options: {
+					archive: 'build/<%= pkg.name %>-v<%= pkg.version %>.zip'
+				},
+				files: [
+					{
+						cwd: 'build/<%= pkg.name %>/',
+						dest: '<%= pkg.name %>/',
+						src: [ '**' ]
+					}
+				]
+			}
+		},
+
+		wp_readme_to_markdown: {
+			options: {
+				post_convert: function( readme ) {
+
+					var matches = readme.match( /\*\*Tags:\*\*(.*)\r?\n/ ),
+					    tags    = matches[1].trim().split( ', ' ),
+					    section = matches[0];
+
+					for ( var i = 0; i < tags.length; i++ ) {
+
+						section = section.replace( tags[i], '[' + tags[i] + '](https://wordpress.org/themes/tags/' + tags[i] + '/)' );
+
+					}
+
+					// Banner
+					if ( grunt.file.exists( 'wp-org-assets/banner-772x250.jpg' ) ) {
+
+						readme = readme.replace( '**Contributors:**', "![Banner Image](wp-org-assets/banner-772x250.jpg)\r\n\r\n**Contributors:**" );
+
+					}
+
+					// Tag links
+					readme = readme.replace( matches[0], section );
+
+					// Badges
+					readme = readme.replace( '## Description ##', grunt.template.process( pkg.badges.join( ' ' ) ) + "  \r\n\r\n## Description ##" );
+
+					return readme;
+
+				}
+			},
+			main: {
+				files: {
+					'readme.md': 'readme.txt'
+				}
 			}
 		},
 
 		wp_deploy: {
 			deploy: {
 				options: {
-					plugin_slug: 'timeline-express-no-icons-add-on',
-					build_dir: 'build/',
+					assets_dir: 'wp-org-assets/',
+					plugin_slug: '<%= pkg.name %>',
+					build_dir: 'build/<%= pkg.name %>/',
 					deploy_trunk: true,
 					deploy_tag: pkg.version,
-					max_buffer: 1024*1024*2
-				},
+					max_buffer: 1024*1024*10
+				}
 			}
 		}
 
-	});
+	} );
 
-	// load tasks
-	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
-	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-banner' );
-	grunt.loadNpmTasks( 'grunt-text-replace' );
-	grunt.loadNpmTasks( 'grunt-postcss' );
-	grunt.loadNpmTasks( 'grunt-wp-deploy' );
+	require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( grunt.loadNpmTasks );
 
-  // register task
-  grunt.registerTask( 'default', [
-		'postcss',
+	grunt.registerTask( 'default', [
+		'menu'
+	] );
+
+	grunt.registerTask( 'Development tasks.', [
+		'sass',
+		'replace',
+		'autoprefixer',
 		'cssmin',
 		'usebanner',
-		'watch',
+		'wp_readme_to_markdown'
 	] );
 
-	// register bump-version
-	grunt.registerTask( 'bump-version', [
-		'replace',
+	grunt.registerTask( 'Build the plugin.', [
+		'Development tasks.',
+		'clean:pre_build',
+		'copy',
+		'compress'
 	] );
 
-	// register deploy
-	grunt.registerTask( 'deploy', [
-		'copy:deploy',
+	grunt.registerTask( 'Deploy to WordPres.org.', [
+		'Build the plugin.',
 		'wp_deploy'
+	] );
+
+	grunt.registerTask( 'Generate readme.', [
+		'wp_readme_to_markdown'
+	] );
+
+	grunt.registerTask( 'Replace versions.', [
+		'replace'
 	] );
 
 };
