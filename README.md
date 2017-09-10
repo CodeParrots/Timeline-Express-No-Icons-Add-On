@@ -7,7 +7,7 @@
 **Requires at least:** WP 4.0 & Timeline Express 1.2  
 **Requires PHP:** 5.6  
 **Tested up to:** 4.8  
-**Stable tag:** 1.1.1  
+**Stable tag:** 1.2.0  
 **License:** GPLv2 or later  
 
 Remove the icons associated with Timeline Express announcements.
@@ -37,7 +37,7 @@ If you want to remove the icons on a specific timeline, but leave them on others
 
 ## Changelog ##
 
-### 1.2.0 - July 4th, 2017 ###
+### 1.2.0 - September 10th, 2017 ###
 * Tweaked the shortcode generate section for Timeline Express Pro v2 API.
 * Prevent the no icons stylesheet from loading if the styles module is loaded in the Pro version (v2.0+).
 * Change class from 'no-icons' to 'no-icon' to match the Pro version syntax.
