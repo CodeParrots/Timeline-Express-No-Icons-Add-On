@@ -7,7 +7,7 @@
 **Requires at least:** WP 4.0 & Timeline Express 1.2  
 **Requires PHP:** 5.6  
 **Tested up to:** 4.8  
-**Stable tag:** 1.1.1  
+**Stable tag:** 1.2.0  
 **License:** GPLv2 or later  
 
 Remove the icons associated with Timeline Express announcements.
