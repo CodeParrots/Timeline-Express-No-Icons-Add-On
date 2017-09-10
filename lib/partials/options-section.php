@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php
 						printf(
 							'<p class="description">%1$s</p>',
-							sprintf( __( '%s: When this option is checked off, the icon selection will no longer be present on the announcement edit screen.', 'timeline-express-no-icons-add-on' ), '<strong>' . __( 'Note', 'timeline-express-no-icons-add-on' ) . '</strong>' )
+							sprintf( /* translators: Note wrapped in strong tags. */ __( '%s: When this option is checked off, the icon selection will no longer be present on the announcement edit screen.', 'timeline-express-no-icons-add-on' ), '<strong>' . __( 'Note', 'timeline-express-no-icons-add-on' ) . '</strong>' )
 						);
 					?>
 

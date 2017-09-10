@@ -299,7 +299,7 @@ function initialize_timeline_express_no_icons_addon() {
 
 			$posted_option = isset( $_POST['timeline_express_storage'] ) ? $_POST['timeline_express_storage'] : false;
 
-			$options['global_no_icons']          = isset( $posted_option['global_no_icons'] )          ? true : false;
+			$options['global_no_icons']          = isset( $posted_option['global_no_icons'] ) ? true : false;
 			$options['disable_hover_animations'] = isset( $posted_option['disable_hover_animations'] ) ? true : false;
 
 			return $options;
