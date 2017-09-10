@@ -1,10 +1,11 @@
 === Timeline Express - No Icons Add-On ===
 Contributors: codeparrots, eherman24
-Tags: timeline, express, time, line, timeline express, add, on, add-on, no, icons, no icons
+Tags: timeline, express, no, icons, add-on, shortcode, parameter
 Plugin URI: https://www.wp-timelineexpress.com
 Requires at least: WP 4.0 & Timeline Express 1.2
+Requires PHP: 5.6
 Tested up to: 4.8
-Stable tag: 1.2.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 
 Remove the icons associated with Timeline Express announcements.

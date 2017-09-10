@@ -4,7 +4,7 @@
 Plugin Name: Timeline Express - No Icons Add-On
 Plugin URI: https://www.wp-timelineexpress.com
 Description: Remove icons from a single timeline or all timelines globally.
-Version: 1.2.0
+Version: 1.1.1
 Author: Code Parrots
 Text Domain: timeline-express-no-icons-add-on
 Author URI: http://www.codeparrots.com

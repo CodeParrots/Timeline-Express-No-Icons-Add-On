@@ -91,6 +91,12 @@ module.exports = function(grunt) {
 					event: [ 'all' ]
 				},
 			},
+			images: {
+				files: [
+					'wp-org-assets/**/*.{gif,jpeg,jpg,png,svg}'
+				],
+				tasks: [ 'imagemin' ]
+			},
 			sass: {
 				files: '.dev/sass/**/*.scss',
 				tasks: [ 'sass', 'autoprefixer', 'cssmin' ]
@@ -126,14 +132,6 @@ module.exports = function(grunt) {
 				replacements: [ {
 					from: /Stable tag: (.*)/,
 					to: "Stable tag: <%= pkg.version %>"
-				} ]
-			},
-			readme_md: {
-				src: [ 'README.md' ],
-				overwrite: true,
-				replacements: [ {
-					from: /# (.*?) #/,
-					to: "# <%= pkg.title %> v<%= pkg.version %> #"
 				} ]
 			},
 			charset: {
@@ -197,8 +195,18 @@ module.exports = function(grunt) {
 
 					}
 
+					// Banner
+					if ( grunt.file.exists( 'wp-org-assets/banner-772x250.jpg' ) ) {
+
+						readme = readme.replace( '**Contributors:**', "![Banner Image](wp-org-assets/banner-772x250.jpg)\r\n\r\n**Contributors:**" );
+
+					}
+
 					// Tag links
 					readme = readme.replace( matches[0], section );
+
+					// Badges
+					readme = readme.replace( '## Description ##', grunt.template.process( pkg.badges.join( ' ' ) ) + "  \r\n\r\n## Description ##" );
 
 					return readme;
 
@@ -214,6 +222,7 @@ module.exports = function(grunt) {
 		wp_deploy: {
 			deploy: {
 				options: {
+					assets_dir: 'wp-org-assets/',
 					plugin_slug: '<%= pkg.name %>',
 					build_dir: 'build/<%= pkg.name %>/',
 					deploy_trunk: true,
@@ -237,8 +246,7 @@ module.exports = function(grunt) {
 		'autoprefixer',
 		'cssmin',
 		'usebanner',
-		'wp_readme_to_markdown',
-		'replace:readme_md'
+		'wp_readme_to_markdown'
 	] );
 
 	grunt.registerTask( 'Build the plugin.', [
@@ -254,8 +262,7 @@ module.exports = function(grunt) {
 	] );
 
 	grunt.registerTask( 'Generate readme.', [
-		'wp_readme_to_markdown',
-		'replace:readme_md'
+		'wp_readme_to_markdown'
 	] );
 
 	grunt.registerTask( 'Replace versions.', [

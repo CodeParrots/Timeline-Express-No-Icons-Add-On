@@ -1,13 +1,18 @@
-# Timeline Express - No Icons Add-On v1.2.0 #
+# Timeline Express - No Icons Add-On #
+![Banner Image](wp-org-assets/banner-772x250.jpg)
+
 **Contributors:** [codeparrots](https://profiles.wordpress.org/codeparrots), [eherman24](https://profiles.wordpress.org/eherman24)  
-**Tags:** [[time](https://wordpress.org/themes/tags/time/)[line](https://wordpress.org/themes/tags/line/)](https://wordpress.org/themes/tags/timeline/), [express](https://wordpress.org/themes/tags/express/), time, line, [timeline express](https://wordpress.org/themes/tags/timeline express/), [add](https://wordpress.org/themes/tags/add/), [on](https://wordpress.org/themes/tags/on/), [add-on](https://wordpress.org/themes/tags/add-on/), [no](https://wordpress.org/themes/tags/no/), [icons](https://wordpress.org/themes/tags/icons/), [no icons](https://wordpress.org/themes/tags/no icons/)  
+**Tags:** [timeline](https://wordpress.org/themes/tags/timeline/), [express](https://wordpress.org/themes/tags/express/), [no](https://wordpress.org/themes/tags/no/), [icons](https://wordpress.org/themes/tags/icons/), [add-on](https://wordpress.org/themes/tags/add-on/), [shortcode](https://wordpress.org/themes/tags/shortcode/), [parameter](https://wordpress.org/themes/tags/parameter/)  
 **Plugin URI:** https://www.wp-timelineexpress.com  
 **Requires at least:** WP 4.0 & Timeline Express 1.2  
+**Requires PHP:** 5.6  
 **Tested up to:** 4.8  
-**Stable tag:** 1.2.0  
+**Stable tag:** 1.1.1  
 **License:** GPLv2 or later  
 
 Remove the icons associated with Timeline Express announcements.
+
+[![Build Status](https://travis-ci.org/.svg?branch=master)](https://travis-ci.org/) [![License](https://img.shields.io/badge/license-GPL--2.0-brightgreen.svg)](https://github.com//blob/master/license.txt) [![PHP 5.6](https://img.shields.io/badge/php-5.6-8892bf.svg)](https://secure.php.net/supported-versions.php) [![WordPress plugin](https://img.shields.io/wordpress/plugin/v/timeline-express-no-icons-add-on.svg)](https://wordpress.org/plugins/timeline-express-no-icons-add-on/) [![WordPress](https://img.shields.io/wordpress/v/timeline-express-no-icons-add-on.svg)](https://img.shields.io/wordpress/v/timeline-express-no-icons-add-on.svg) [![WordPress](https://img.shields.io/wordpress/plugin/dt/timeline-express-no-icons-add-on.svg)](https://wordpress.org/plugins/timeline-express-no-icons-add-on/)  
 
 ## Description ##
 
