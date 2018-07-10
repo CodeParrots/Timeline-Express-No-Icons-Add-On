@@ -6,7 +6,7 @@
 **Plugin URI:** https://www.wp-timelineexpress.com  
 **Requires at least:** WP 4.0 & Timeline Express 1.2  
 **Requires PHP:** 5.6  
-**Tested up to:** 4.8  
+**Tested up to:** 4.9  
 **Stable tag:** 1.2.0  
 **License:** GPLv2 or later  
 
